@@ -1,6 +1,6 @@
 # Meeting emails logic
 
-Shared logic for drafting pre-meeting emails on All Meetings rows. Used two ways: automatically inside every convohub/convohub7/convohub30 run (via core-logic.md Step 1a.6), and standalone via the `meeting-emails` skill. Never invent data you don't have; skip a row rather than guess.
+Shared logic for drafting pre-meeting emails on All Meetings rows. Used two ways: automatically inside every convohub/convohub7/convohub30 run (via core-logic.md Step 1e), and standalone via the `meeting-emails` skill. Never invent data you don't have; skip a row rather than guess.
 
 Takes one parameter, `INTERACTIVE_SEND_MODE` (boolean, default false):
 - **convohub/convohub7/convohub30 invocations always pass `false`** — no exceptions, this is an autonomous run with no one present to approve a send mid-flight.
@@ -21,12 +21,7 @@ Skip any row where the meeting is less than 1 hour away, or already in the past.
 
 ## Classify inbound vs. outbound
 
-In this order, first match wins:
-1. `Channel` = "Inbound priority" or "Inbound none priority" → **inbound**.
-2. `Channel` = "Email", "LinkedIn", or "Cold Call" → **outbound**.
-3. `Channel` is blank: if `SF Opp URL` is set, query that Opportunity's `LeadSource` via `soqlQuery`. `LeadSource = "Book-A-Call Form"` (exact value, case-sensitive) → **inbound**; anything else → **outbound**. If `SF Opp URL` is also blank, default to **outbound** (no signal either way).
-
-Do not overwrite `Channel` here — that's core-logic.md Step 1c's job. This classification is only for picking which email template to draft.
+`Channel` = "Inbound priority" or "Inbound none priority" → **inbound**. `Channel` = "Email", "LinkedIn", or "Cold Call" → **outbound**. `Channel` blank → **skip this row and flag it** in the summary; don't guess, and never independently query Salesforce here — the single Salesforce check already happened once, in core-logic.md Step 1c (see that file's reordered Step 1e, which only invokes this file after Channel is resolved for every row in the window).
 
 ## Resolve names
 
