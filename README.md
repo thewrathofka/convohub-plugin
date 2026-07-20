@@ -24,6 +24,8 @@ Before touching any cold call, it pulls the calendar for the current week throug
 
 When a cold call books a meeting, it also syncs that straight into All Meetings — creating the row (Channel = Cold Call, Status = Booked, Notes = a short gist) if it doesn't exist yet, or prepending the call notes to the top of the existing meeting page if it does.
 
+Every Meeting-booked, Connected-Positive, or Connected-Neutral call also gets logged on the account's own page in All Accounts, under a single `## Conversations` heading (name of person, date, disposition, short summary — newest entry always on top, never overwriting older ones).
+
 ## Requirements
 
 Each rep needs their own Jiminny, Notion (with access to the Money Moguls workspace — Conversation Hub, All Accounts, All Meetings, Monthly Scoreboard), Gmail, Calendar, and Salesforce connected in whichever surface they run this from (Cowork or Claude Code). The plugin references tools by name, not by connector ID, so it works regardless of whose connector instance is behind them.
