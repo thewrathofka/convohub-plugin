@@ -26,9 +26,13 @@ When a cold call books a meeting, it also syncs that straight into All Meetings 
 
 Every Meeting-booked, Connected-Positive, or Connected-Neutral call also gets logged on the account's own page in All Accounts, under a single `## Conversations` heading (name of person, date, disposition, short summary — newest entry always on top, never overwriting older ones) — always sourced from the cold call itself, never from a qualification meeting/call. If a contact says on a cold call that they've left the company, that gets flagged there too, without linking them to the account in Conversation Hub.
 
+Positive/Neutral contacts are split by title before any follow-up cadence runs: above-the-line titles (marketing/brand/creative/content/comms leadership — see the tier table in `core-logic.md`) keep the full two-touch cadence; below-the-line titles (designers, consultants, researchers, and other individual-contributor roles) get no follow-up at all unless the call explicitly demanded one, in which case they get exactly one follow-up at Low priority and nothing further — no second touch, no nurture hand-off.
+
+Every follow-up the plugin drafts, of any kind, also creates a matching task in Apollo (deduped against existing open tasks first, never requiring a live confirmation mid-run) — the email/LinkedIn/callback content goes on the task itself, due-dated to match the Notion `Suggested follow-up` date, alongside the usual Notion write.
+
 ## Requirements
 
-Each rep needs their own Jiminny, Notion (with access to the Money Moguls workspace — Conversation Hub, All Accounts, All Meetings, Monthly Scoreboard), Gmail, Calendar, and Salesforce connected in whichever surface they run this from (Cowork or Claude Code). The plugin references tools by name, not by connector ID, so it works regardless of whose connector instance is behind them.
+Each rep needs their own Jiminny, Notion (with access to the Money Moguls workspace — Conversation Hub, All Accounts, All Meetings, Monthly Scoreboard), Gmail, Calendar, Salesforce, and Apollo connected in whichever surface they run this from (Cowork or Claude Code). The plugin references tools by name, not by connector ID, so it works regardless of whose connector instance is behind them.
 
 ## What it never does
 
